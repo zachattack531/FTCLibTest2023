@@ -29,7 +29,7 @@ public class Imu {
 
 
     public void init() {
-        imu = hardwareMap.get(IMU.class, "imuCH");
+        imu = hardwareMap.get(IMU.class, "imu");
 
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.UP;
         RevHubOrientationOnRobot.UsbFacingDirection usbDirection = RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
