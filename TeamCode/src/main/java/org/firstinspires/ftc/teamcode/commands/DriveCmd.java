@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 
 import org.firstinspires.ftc.teamcode.subsystems.DrivetrainSub;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 public class DriveCmd extends CommandBase {
@@ -13,9 +14,9 @@ public class DriveCmd extends CommandBase {
     private final DrivetrainSub drivetrainSub;
     private final GamepadEx gamepad;
     private final DoubleSupplier angleDegrees;
-    private final boolean fieldCentric;
+    private final BooleanSupplier fieldCentric;
 
-    public DriveCmd(DrivetrainSub dts, GamepadEx gp1, DoubleSupplier ad, Boolean fc){
+    public DriveCmd(DrivetrainSub dts, GamepadEx gp1, DoubleSupplier ad, BooleanSupplier fc){
         drivetrainSub = dts;
         gamepad = gp1;
         angleDegrees = ad;
@@ -37,7 +38,7 @@ public class DriveCmd extends CommandBase {
             //telemetry.addData("Precise Mode", "On");
         }
 
-        if (fieldCentric) {
+        if (fieldCentric.getAsBoolean()) {
             // optional fifth parameter for squared inputs
             drivetrainSub.getDrive().driveFieldCentric(
                     gamepad.getLeftX()*brakeMultiplier,
